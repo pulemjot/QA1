@@ -1,4 +1,4 @@
-package openWebBrowser;
+package OpenJavaGuruWebsite;
 
 
 import org.junit.Assert;
@@ -14,9 +14,10 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import java.util.concurrent.TimeUnit;
 
 
-public class JavaGuruHomePageTest
+public class OpenJavaGuru
 {
-    private String HOME_PAGE = "http://www.google.com";
+    private String HOME_PAGE = "http://javaguru.lv/";
+    private static final By button =  By.xpath(".//span[text()='Курс Тестирования(QA)']");
     @Test
     public void openBrowser()
     {
@@ -24,12 +25,9 @@ public class JavaGuruHomePageTest
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(HOME_PAGE);
-        WebElement input = driver.findElement(By.id("lst-ib"));
+        WebElement input = driver.findElement(button);
+        Assert.assertFalse("Element not visible", input.isDisplayed());
         input.click();
-        input.sendKeys("I love Java");
-        input.sendKeys(Keys.ENTER);
-        input.click();
-        input.sendKeys(Keys.CLEAR);
 
 
     }
